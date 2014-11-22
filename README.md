@@ -1,7 +1,5 @@
 #**Chitter Challenge**
 
-=============================================================================================================
-
 <div>
 <img src = http://img.shields.io/badge/PostgreSQL-database-blue.svg>
 <img src = http://img.shields.io/badge/bcrypt-password-red.svg>
@@ -13,7 +11,7 @@
 <img src = http://img.shields.io/badge/ruby-master-red.svg >
 <img src = http://img.shields.io/badge/sinatra-POST%2FGET-yellow.svg>
 </div>
-
+=============================================================================================================
 
 ##**Features**
 
