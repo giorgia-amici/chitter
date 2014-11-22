@@ -5,5 +5,7 @@ I want to use Chitter
 
 Scenario: Signing up
 Given I am on the homepage
-When I sign up
-Then I should see my personal page
+When my password matches the password confirmation
+Then I see my page
+
+

@@ -1,6 +1,38 @@
-<form action = '/users' method = "post">
-Name: <input type = "text" name = "name" >
-Username: <input type = "text" name = "username">
-Email: <input type = "text" name = "email">
-Password: <input type = "password" name = "password">
-<input type = "submit" value = "Sign Up">
+<div>
+	<form action = '/user/new' method = "post">
+		Name: <input type = "text" name = "name" >
+		Username: <input type = "text" name = "username">
+		Email: <input type = "text" name = "email">
+		Password: <input type = "password" name = "password">
+		Password Confirmation: <input name="password_confirmation" type="password"> 
+			<input type = "submit" value = "Sign Up">
+	</form>
+</div>
+<!-- <div>
+<form action "/returning_user" method = "post">
+		Username: <input type = "text" name = "username">
+		Password: <input type = "password" name = "password">
+<input type = "submit" value = "Sign In">
+</form>
+</div> -->
+
+
+<!-- 
+<div class="span3">
+    <h2>Sign Up</h2>
+    <form>
+    <label>First Name</label>
+    <input type="text" name="firstname" class="span3">
+    <label>Last Name</label>
+    <input type="text" name="lastname" class="span3">
+    <label>Email Address</label>
+    <input type="email" name="email" class="span3">
+    <label>Username</label>
+    <input type="text" name="username" class="span3">
+    <label>Password</label>
+    <input type="password" name="password" class="span3">
+    <label><input type="checkbox" name="terms"> I agree with the <a href="#">Terms and Conditions</a>.</label>
+    <input type="submit" value="Sign up" class="btn btn-primary pull-right">
+    <div class="clearfix"></div>
+    </form>
+</div> -->
