@@ -1,9 +1,9 @@
-Feature: In order to use chitter
+Feature: In order to share info with my friends
 As a social person
-In order to keep in touch with my friends
-I want to use chitter
+In order to be up-to-date
+I want to use Chitter
 
-Scenario: Sign up
+Scenario: Signing up
 Given I am on the homepage
 When I sign up
-Then I should see my personal homepage
+Then I should see my personal page

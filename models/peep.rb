@@ -8,6 +8,6 @@ class Peep
 	property :content,     Text
 	property :created_at,  DateTime
 
-	has n  :users, :through => Resource      
+	belongs_to  :user
 
 end
