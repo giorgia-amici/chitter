@@ -9,3 +9,7 @@ When my password matches the password confirmation
 Then I see my page
 
 
+Scenario: Signing uo
+Given I am on the homepage
+When my password DOES NOT match the password confirmation
+Then I see the same page

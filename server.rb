@@ -2,6 +2,7 @@ require 'sinatra'
 require 'rack-flash'
 require 'data_mapper'
 
+
 env = ENV['RACK_ENV'] || "development" 
 DataMapper.setup(:default, "postgres://localhost/chitter_#{env}")
 
@@ -31,7 +32,8 @@ use Rack::Flash
                         :password_confirmation =>  params['password_confirmation'])
   	if @user.save
       session[:user_id] = @user_id
-      redirect to '/user_profile'
+      erb :chitter
+      # redirect to '/user_profile'
     else
      flash[:notice] = "Sorry, your passwords don't match"
       redirect to('/')
