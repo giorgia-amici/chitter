@@ -17,6 +17,7 @@ class Chitter < Sinatra::Base
 set :public, Proc.new {File.join(root, "public_folder")}
 set :views, Proc.new {File.join(root, "views")}
 enable :sessions
+set :session_secret, 'super secret'
 use Rack::Flash
 
   get '/' do
@@ -47,6 +48,13 @@ use Rack::Flash
      erb :chitter
   end
 
+
+
+
+
+  def current_user
+    @current_user ||=User.get(session[:user_id]) if session[:user_id]
+  end
 
 
 end

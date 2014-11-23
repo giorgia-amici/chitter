@@ -9,7 +9,12 @@ When my password matches the password confirmation
 Then I see my page
 
 
-Scenario: Signing uo
+Scenario: Signing up
 Given I am on the homepage
 When my password DOES NOT match the password confirmation
-Then I see the same page
+Then I see an error
+
+Scenario: Signing up
+Given I am on the hompage
+When the email I have inserted already exists in the database
+Then I see an error

@@ -1,6 +1,7 @@
 require './spec/spec_helper'
+
 before(:each) do
-User.create(:name => 'giorgia',
+	User.create(:name => 'giorgia',
 	                :username => 'gio',
   								:email => 'gio@gio',
   								:password => 'yoyo',
@@ -14,11 +15,11 @@ end
 
 When(/^my password matches the password confirmation$/) do
 	visit "/"
-  sign_up(name = "fff", username = "fff", email = "ff@fff", password = "ffff", password_confirmation = "ffff")
+  sign_up
+  #(name = "fffa", username = "fffa", email = "ff@fffa", password = "ffffa", password_confirmation = "ffffa")
 	click_button "Sign Up"
 	expect(page).to have_content("Welcome to Chitter")
-	 expect(current_path).to eq('/user/new')
-	expect(page).to have_content("Welcome fff")
+	expect(page).to have_content("Welcome")
 end
 
 When(/^my password DOES NOT match the password confirmation$/) do
@@ -28,7 +29,7 @@ When(/^my password DOES NOT match the password confirmation$/) do
 	expect(page).to have_content("Sorry, your passwords don't match")
 end
 
-Then(/^I see the same page$/) do
+Then(/^I see an error$/) do
   pending # express the regexp above with the code you wish you had
 end
 
