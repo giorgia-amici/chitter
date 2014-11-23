@@ -40,8 +40,11 @@ use Rack::Flash
     end
   end
 
-  get '/user_profile' do 
-      erb :chitter
+  get '/returning_user' do 
+    # :username =>  params['username'],
+    #                     :email => params['email']
+    raise params
+     erb :chitter
   end
 
 
