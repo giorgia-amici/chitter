@@ -3,17 +3,6 @@ require 'rack-flash'
 require 'data_mapper'
 require_relative 'data_mapper_setup'
 
-
-# env = ENV["RACK_ENV"] || "development"
-
-# DataMapper.setup(:default, "postgres://localhost/bookmark_manager_#{env}")
-
-# require './models/user'
-# require './models/peep'
-
-# DataMapper.finalize
-# DataMapper.auto_upgrade!
-
 class Chitter < Sinatra::Base
 
 set :public, Proc.new {File.join(root, "public_folder")}

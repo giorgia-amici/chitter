@@ -17,7 +17,7 @@ When(/^my password matches the password confirmation$/) do
 	visit "/"
   sign_up
   expect(page).to have_content("Welcome to Chitter")
-	expect(page).to have_content("Welcome")
+	expect(page).to have_content("Welcome giorgia")
 end
 
 When(/^my password DOES NOT match the password confirmation$/) do
@@ -28,19 +28,19 @@ When(/^my password DOES NOT match the password confirmation$/) do
 	expect(page).to have_content("Sorry, your passwords don't match")
 end
 
-# Then(/^I see an error$/) do
-#   pending # express the regexp above with the code you wish you had
-# end
+Given(/^I am on the hompage$/) do
+	visit '/'
+	expect(page).to have_content("Welcome to Chitter")
+end
 
-
-# Given(/^I am on the hompage$/) do
-# 	visit '/'
-# 	sign_up
-# end
-
-# When(/^the email I have inserted already exists in the database$/) do
-#   pending # express the regexp above with the code you wish you had
-# end
+When(/^the email I have inserted already exists in the database$/) do
+	visit '/'
+	User.create(:name => 'giorgia', username:'gio', :email=>'gio@gio', :password => "yoyo", :password_confirmation => "yoyo")
+  sign_up(name = "giorgia", username = "gio", email = "gio@gio", password = "yoyo", password_confirmation = "yoyo") 
+  expect(page).not_to have_content("Welcome, giorgia")
+  expect(page).to have_content("Welcome to Chitter")
+	expect(page).to have_content("Email is already taken")
+end
 
 
 def sign_up(name = "giorgia", username = "gio", email = "gio@gio", password = "yoyo", password_confirmation = 'yoyo')
