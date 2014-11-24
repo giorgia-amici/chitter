@@ -42,18 +42,25 @@ When(/^the email I have inserted already exists in the database$/) do
 	expect(page).to have_content("Email is already taken")
 end
 
-# Given(/^That I have already registered$/) do
-# 	visit '/sessions/new'
-# 	expect(page).not_to have_content("Welcome giorgia")
-# 	sign_in('gio@gio', 'yoyo')
-# 	expect(page).to have_content("Welcome to Chitter")
-# end
+Given(/^That I have already registered$/) do
+	visit '/'
+	expect(page).not_to have_content("Welcome giorgia")
+	User.create(:name => 'giorgia', username:'gio', :email=>'gio@gio', :password => "yoyo", :password_confirmation => "yoyo")
+	sign_in('gio@gio', 'yoyo')
+	expect(page).to have_content("Welcome to Chitter")
+	expect(page).to have_content("Welcome giorgia")
+end
 
 When(/^I type my name in the form$/) do
-
+	visit '/'
+	User.create(:name => 'giorgia', username:'gio', :email=>'gio@gio', :password => "yoyo", :password_confirmation => "yoyo")
+	sign_in('gio@gio', 'yoyo')
+	expect(page).to have_content("Welcome to Chitter")
+	expect(page).to have_content("Welcome giorgia")
 end
 
 Then(/^I should be able to log in$/) do
+	visit '/session/new'
 end
 
 
