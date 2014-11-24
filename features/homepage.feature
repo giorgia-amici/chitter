@@ -6,7 +6,7 @@ I want to use Chitter
 Scenario: Signing up
 Given I am on the homepage
 When my password matches the password confirmation
-Then I see my page
+
 
 Scenario: Signing up
 Given I am on the homepage
@@ -15,4 +15,9 @@ When my password DOES NOT match the password confirmation
 Scenario: Signing up
 Given I am on the hompage
 When the email I have inserted already exists in the database
-Then I see an error
+
+
+Scenario: Signing in
+Given That I have already registered 
+When I type my name in the form
+Then I should be able to log in
