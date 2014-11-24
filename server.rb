@@ -1,16 +1,18 @@
 require 'sinatra'
 require 'rack-flash'
 require 'data_mapper'
+require_relative 'data_mapper_setup'
 
 
-env = ENV['RACK_ENV'] || "development" 
-DataMapper.setup(:default, "postgres://localhost/chitter_#{env}")
+# env = ENV["RACK_ENV"] || "development"
 
-require './models/user'
-require './models/peep'
+# DataMapper.setup(:default, "postgres://localhost/bookmark_manager_#{env}")
 
-DataMapper.finalize
-DataMapper.auto_upgrade!
+# require './models/user'
+# require './models/peep'
+
+# DataMapper.finalize
+# DataMapper.auto_upgrade!
 
 class Chitter < Sinatra::Base
 
@@ -34,9 +36,8 @@ use Rack::Flash
   	if @user.save
       session[:user_id] = @user_id
       erb :chitter
-      # redirect to '/user_profile'
     else
-     flash[:notice] = "Sorry, your passwords don't match"
+     flash[:errors] = @user.errors.full_messages
       redirect to('/')
     end
   end
@@ -44,8 +45,8 @@ use Rack::Flash
   get '/returning_user' do 
     # :username =>  params['username'],
     #                     :email => params['email']
-    raise params
-     erb :chitter
+    # raise params
+    #  erb :chitter
   end
 
 
