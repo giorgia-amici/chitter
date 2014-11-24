@@ -21,3 +21,8 @@ Scenario: Signing in
 Given That I have already registered 
 When I type my name in the form
 Then I should be able to log in
+
+Scenario: Signing out
+Given that I have been signed in
+When I sign out
+Then I am not logged in anymore

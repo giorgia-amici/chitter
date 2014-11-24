@@ -1,5 +1,7 @@
 require './spec/spec_helper'
 
+include SessionHelpers
+
 before(:each) do
 	User.create(:name => 'giorgia',
 	                :username => 'gio',
@@ -64,28 +66,39 @@ Then(/^I should be able to log in$/) do
 end
 
 
+# Given(/^that I have been signed in$/) do
+# 	visit '/'
+# 	sign_in('gio@gio', 'yoyo')
+# 	click_button "Sign Out"
+# 	expect(page).to have_content("Bye!")
+# 	expect(page).not_to have_content("Welcome giorgia")
+# end
 
-
-
-
-
-
-
-
-def sign_up(name = "giorgia", username = "gio", email = "gio@gio", password = "yoyo", password_confirmation = 'yoyo')
-	fill_in 'name', :with => name
-	fill_in 'username', :with => username
-	fill_in 'email_su', :with => email
-	fill_in 'password_su', :with => password
-	fill_in 'password_confirmation', :with => password_confirmation
-	click_button "Sign Up"
+When(/^I sign out$/) do
+  pending # express the regexp above with the code you wish you had
 end
 
-def sign_in(email, password)
-	fill_in 'email_si', :with => email
-	fill_in 'password_si', :with => password
-	click_button "Sign In"
+Then(/^I am not logged in anymore$/) do
+  pending # express the regexp above with the code you wish you had
 end
+
+
+
+
+# def sign_up(name = "giorgia", username = "gio", email = "gio@gio", password = "yoyo", password_confirmation = 'yoyo')
+# 	fill_in 'name', :with => name
+# 	fill_in 'username', :with => username
+# 	fill_in 'email_su', :with => email
+# 	fill_in 'password_su', :with => password
+# 	fill_in 'password_confirmation', :with => password_confirmation
+# 	click_button "Sign Up"
+# end
+
+# def sign_in(email, password)
+# 	fill_in 'email_si', :with => email
+# 	fill_in 'password_si', :with => password
+# 	click_button "Sign In"
+# end
 
 
 
