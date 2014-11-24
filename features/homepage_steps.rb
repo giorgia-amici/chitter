@@ -15,8 +15,7 @@ end
 
 When(/^my password matches the password confirmation$/) do
 	visit "/"
-  sign_up
-  #(name = "fffa", username = "fffa", email = "ff@fffa", password = "ffffa", password_confirmation = "ffffa")
+  sign_up(name = "fffa", username = "fffa", email = "ff@fffa", password = "ffffa", password_confirmation = "ffffa")
 	click_button "Sign Up"
 	expect(page).to have_content("Welcome to Chitter")
 	expect(page).to have_content("Welcome")
