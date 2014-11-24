@@ -1,5 +1,5 @@
 require './spec/spec_helper'
-
+require_relative 'helpers/session'
 include SessionHelpers
 
 before(:each) do
