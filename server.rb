@@ -2,6 +2,7 @@ require 'sinatra'
 require 'rack-flash'
 require 'data_mapper'
 require_relative 'data_mapper_setup'
+require_relative 'helpers/application'
 
 class Chitter < Sinatra::Base
 
@@ -10,6 +11,7 @@ set :views, Proc.new {File.join(root, "views")}
 enable :sessions
 set :session_secret, 'super secret'
 use Rack::Flash
+use Rack::MethodOverride
 
   get '/' do
     @user = User.new
