@@ -6,4 +6,3 @@ require './models/user'
 require './models/peep'
 
 DataMapper.finalize
-# DataMapper.auto_upgrade!

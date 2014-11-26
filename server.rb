@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'rack-flash'
 require 'data_mapper'
+require 'sinatra/partial'
 require_relative 'data_mapper_setup'
 require_relative 'helpers/application'
 
@@ -12,6 +13,9 @@ enable :sessions
 set :session_secret, 'super secret'
 use Rack::Flash
 use Rack::MethodOverride
+set :partial_template_engine, :erb
+
+
 
   get '/' do
     @user = User.new
@@ -46,9 +50,15 @@ use Rack::MethodOverride
   end
 
 
-  def current_user
-    @current_user ||=User.get(session[:user_id]) if session[:user_id]
+  get '/forgot_password' do 
+    erb :forgot_password
   end
+
+  post '/forgot_password' do 
+    @email = params
+    
+  end
+
 
 
 end
