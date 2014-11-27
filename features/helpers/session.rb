@@ -6,13 +6,13 @@ module SessionHelpers
 		fill_in 'email_su', :with => email
 		fill_in 'password_su', :with => password
 		fill_in 'password_confirmation', :with => password_confirmation
-		click_button "Sign Up"
+		click_on "Sign Up"
 	end
 
 def sign_in(email, password)
 		fill_in 'email_si', :with => email
 		fill_in 'password_si', :with => password
-		click_button "Sign In"
+		click_on "Sign In"
 end
 
 end

@@ -1,6 +1,6 @@
 require './spec/spec_helper'
-# require_relative 'helpers/session'
-# include SessionHelpers
+require_relative 'helpers/session'
+include SessionHelpers
 
 before(:each) do
 	User.create(:name => 'giorgia',
@@ -20,7 +20,7 @@ When(/^my password matches the password confirmation$/) do
   sign_up(name="giorgia", username = "gio", email_su = "gio@gio", password_su = "yoyo", password_confirmation = "yoyo")
   expect(page).to have_content("Welcome to Chitter")
   expect(current_path).to eq('/user/new')
-	expect(page).to have_content("Welcome giorgia")
+	expect(page).to have_content("Welcome #{name}")
 end
 
 When(/^my password DOES NOT match the password confirmation$/) do
@@ -67,14 +67,14 @@ Then(/^I should be able to log in$/) do
 end
 
 
-Given(/^that I have been signed in$/) do
-	visit '/'
-	sign_in('gio@gio', 'yoyo')
-	click_button "Sign Out"
-	expect(current_path).to eq('/session/new')
-	# expect(page).to have_content("Bye!")
-	expect(page).not_to have_content("Welcome giorgia")
-end
+# Given(/^that I have been signed in$/) do
+# 	visit '/'
+# 	sign_in('gio@gio', 'yoyo')
+# 	click_button "Sign Out"
+# 	expect(current_path).to eq('/session/new')
+# 	# expect(page).to have_content("Bye!")
+# 	expect(page).not_to have_content("Welcome giorgia")
+# end
 
 # When(/^I sign out$/) do
 #   pending # express the regexp above with the code you wish you had

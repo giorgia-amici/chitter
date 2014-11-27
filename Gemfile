@@ -7,6 +7,7 @@ gem 'dm-timestamps'
 gem 'bcrypt-ruby'
 gem 'rack-flash3'
 gem 'sinatra-partial'
+gem 'byebug'
 
 group :development, :test do
 	gem 'rspec'
