@@ -78,7 +78,7 @@ end
 When(/^I sign out$/) do
 	click_button "Sign Out"
 	expect(current_path).to eq('/')
-	# expect(page).to have_content("Bye!")
+	expect(page).to have_content("You have signed out - Bye!")
 	expect(page).not_to have_content("Welcome giorgia")
 end
 

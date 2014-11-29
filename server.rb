@@ -55,7 +55,7 @@ set :partial_template_engine, :erb
     session[:user_id] = @user_id
     unless session[:user_id] == nil
       session[:user_id] = nil
-      flash[:notice] = "You have s igned out - Bye!"
+      flash[:notice] = "You have signed out - Bye!"
       flash[:notice] = "You are not signed in."      
     end
     redirect to ('/')
