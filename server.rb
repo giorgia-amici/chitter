@@ -49,8 +49,6 @@ set :partial_template_engine, :erb
     end
   end
 
-
-
   delete '/' do 
     session[:user_id] = @user_id
     unless session[:user_id] == nil
@@ -72,10 +70,6 @@ set :partial_template_engine, :erb
     # user.password_token_timestamp = Time.now
     # user.save
     
-  end
-
-  def current_user    
-    @current_user ||= User.get(session[:user_id]) if session[:user_id]
   end
 
 
