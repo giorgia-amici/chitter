@@ -67,40 +67,29 @@ Then(/^I should be able to log in$/) do
 end
 
 
-# Given(/^that I have been signed in$/) do
-# 	visit '/'
-# 	sign_in('gio@gio', 'yoyo')
-# 	click_button "Sign Out"
-# 	expect(current_path).to eq('/session/new')
-# 	# expect(page).to have_content("Bye!")
-# 	expect(page).not_to have_content("Welcome giorgia")
-# end
+Given(/^that I have been signed in$/) do
+	visit '/'
+	User.create(:name => 'giorgia', username:'gio', :email=>'gio@gio', :password => "yoyo", :password_confirmation => "yoyo")
+	sign_up(name = "giorgia", username = "gio", email_su = "gio@gio", password_su = "yoyo", password_confirmation = "yoyo") 
+	sign_in('gio@gio', 'yoyo')
+	expect(page).to have_content("Welcome giorgia")
+end
 
-# When(/^I sign out$/) do
-#   pending # express the regexp above with the code you wish you had
-# end
+When(/^I sign out$/) do
+	click_button "Sign Out"
+	expect(current_path).to eq('/')
+	# expect(page).to have_content("Bye!")
+	expect(page).not_to have_content("Welcome giorgia")
+end
 
 # Then(/^I am not logged in anymore$/) do
-#   pending # express the regexp above with the code you wish you had
+#   I can only see my posts
 # end
 
 
 
 
-def sign_up(name = "giorgia", username = "gio", email = "gio@gio", password = "yoyo", password_confirmation = 'yoyo')
-	fill_in 'name', :with => name
-	fill_in 'username', :with => username
-	fill_in 'email_su', :with => email
-	fill_in 'password_su', :with => password
-	fill_in 'password_confirmation', :with => password_confirmation
-	click_button "Sign Up"
-end
 
-def sign_in(email, password)
-	fill_in 'email_si', :with => email
-	fill_in 'password_si', :with => password
-	click_button "Sign In"
-end
 
 
 

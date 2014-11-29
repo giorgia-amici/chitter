@@ -9,12 +9,14 @@ module SessionHelpers
 		click_on "Sign Up"
 	end
 
-def sign_in(email, password)
-		fill_in 'email_si', :with => email
-		fill_in 'password_si', :with => password
-		click_on "Sign In"
-end
+	def sign_in(email, password)
+			fill_in 'email_si', :with => email
+			fill_in 'password_si', :with => password
+			click_on "Sign In"
+	end
 
-def sign_out
-	click_on "Sign Out"
+	def sign_out
+		click_on "Sign Out"
+	end
+
 end
