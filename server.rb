@@ -1,3 +1,6 @@
+env = ENV["RACK_ENV"] || "development"
+
+
 require 'sinatra'
 require 'rack-flash'
 require 'data_mapper'
@@ -5,6 +8,13 @@ require 'sinatra/partial'
 require_relative 'data_mapper_setup'
 require_relative 'helpers/application'
 
+require './models/user'
+require './models/peep'
+DataMapper.setup(:default, "postgres://localhost/chitter_#{env}")
+
+
+DataMapper.finalize
+DataMapper.auto_upgrade!
 class Chitter < Sinatra::Base
 
 set :public_folder, Proc.new {File.join(root, "public_folder")}
@@ -19,16 +29,16 @@ set :partial_template_engine, :erb
 
   get '/' do
     @user = User.new
-  	erb :index
+    erb :index
   end
 
   post '/user/new' do
-  	@user = User.new(:name => params['name'], 
+    @user = User.new(:name => params['name'], 
                         :username =>  params['username'],
                         :email => params['email_su'], 
                         :password =>  params['password_su'],
                         :password_confirmation =>  params['password_confirmation'])
-  	if @user.save
+    if @user.save
       session[:user_id] = @user_id
       erb :chitter
     else
@@ -40,6 +50,7 @@ set :partial_template_engine, :erb
   post '/session/new' do 
     email, password = params['email_si'], params['password_si']
     @user = User.authenticate(email, password)
+    # @post = Peep.create(:content => params['content'])
     if @user
       session[:user_id] = @user_id
       erb :chitter
@@ -70,6 +81,8 @@ set :partial_template_engine, :erb
     # user.save
     
   end
+
+
 
 
 end
