@@ -15,4 +15,6 @@ def sign_in(email, password)
 		click_on "Sign In"
 end
 
+def sign_out
+	click_on "Sign Out"
 end

@@ -50,6 +50,17 @@ set :partial_template_engine, :erb
   end
 
 
+
+  delete '/' do 
+    session[:user_id] = @user_id
+    unless session[:user_id] == nil
+      session[:user_id] = nil
+      flash[:notice] = "You have s igned out - Bye!"
+      flash[:notice] = "You are not signed in."      
+    end
+    redirect to ('/')
+  end
+
   get '/forgot_password' do 
     erb :forgot_password
   end
@@ -63,6 +74,9 @@ set :partial_template_engine, :erb
     
   end
 
+  def current_user    
+    @current_user ||= User.get(session[:user_id]) if session[:user_id]
+  end
 
 
 end

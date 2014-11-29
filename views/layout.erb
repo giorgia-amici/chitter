@@ -4,11 +4,13 @@
 		<title> CHITTER </title>
 	
 			<body>
-					<h1> Welcome to Chitter </h1>	
-    			<form method="post" action="/session/new">
+			
+					<h1> Welcome to Chitter </h1>
+    			<form action="/" method="post">
       				<input type="hidden" name="_method" value="delete">
       				<input type="submit" value="Sign Out">
    				 </form>
+					
    				   <% if flash[:notice] %>
     						<div id="notice">
       							<%= flash[:notice] %>
