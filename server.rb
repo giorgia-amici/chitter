@@ -60,6 +60,12 @@ set :partial_template_engine, :erb
     end
   end
 
+
+  get '/session/new' do 
+      erb :chitter
+  end
+
+
   delete '/' do 
     session[:user_id] = @user_id
     unless session[:user_id] == nil

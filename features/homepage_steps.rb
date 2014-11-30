@@ -66,7 +66,6 @@ Then(/^I should be able to log in$/) do
 	visit '/session/new'
 end
 
-
 Given(/^that I have been signed in$/) do
 	visit '/'
 	User.create(:name => 'giorgia', username:'gio', :email=>'gio@gio', :password => "yoyo", :password_confirmation => "yoyo")
@@ -82,9 +81,9 @@ When(/^I sign out$/) do
 	expect(page).not_to have_content("Welcome giorgia")
 end
 
-# Then(/^I am not logged in anymore$/) do
+Then(/^I am not logged in anymore$/) do
 #   I can only see my posts
-# end
+end
 
 
 
