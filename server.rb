@@ -84,19 +84,33 @@ set :partial_template_engine, :erb
   end
 
   post '/forgot_password' do 
-    @scatterbrain_user = User.first(:email => params["email"])
-    @scatterbrain_user.password_token = (1..64).map{('A'..'Z').to_a.sample}.join
-    @scatterbrain_user.save
-    "Please, check your inbox"
+    @user = User.first(:email => params["email"])
+    @user.password_token = (1..64).map{('A'..'Z').to_a.sample}.join
+    @user.save
+    redirect to ('/reset_password/:token')
   end
 
   get '/reset_password/:token' do 
-    @scatterbrain_user = User.first[password_token: params[:token ]]
+    @token = params[:token]
+    @user = User.first[password_token: @token]
     erb :new_password
-
-
   end
 
+  post '/user/reset_password' do 
+    @user = User.first(password_token: @token)
+    @user.update(password: params[:password], password_confirmation: params[:password_confirmation])
+    "Your password has been updated"
+  end
+
+
+  def send_simple_message
+    RestClient.post "https://api:key-3ax6xnjp29jd6fds4gc373sgvjxteol0"\
+    "@api.mailgun.net/v2/samples.mailgun.org/messages",
+    :from => "Excited User <me@samples.mailgun.org>",
+    :to => "bar@example.com, baz@example.com",
+    :subject => "Hello",
+    :text => "Testing some Mailgun awesomness!"
+  end
 
 
 
