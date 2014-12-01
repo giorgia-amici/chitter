@@ -9,5 +9,4 @@ class Peep
 	property :created_at,  DateTime
 
 	belongs_to  :user
-
 end

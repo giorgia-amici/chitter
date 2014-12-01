@@ -50,8 +50,6 @@ set :partial_template_engine, :erb
   post '/session/new' do 
     email, password = params['email_si'], params['password_si']
     @user = User.authenticate(email, password)
-    # puts @user.inspect
-    # puts @user.id.inspect
     if @user
       session[:user_id] = @user.id
       erb :chitter
@@ -63,23 +61,16 @@ set :partial_template_engine, :erb
 
 
   get '/peep' do 
-      erb :new_peep
+    # puts @peeps.inspect
+    # @peeps = Peep.all(:order => [ :id.desc ], :limit => 20)
+    erb :posts
   end
 
-  post '/peep/new' do 
-    session[:user_id] = @user.id
-    @peep = Peep.create(:user_id => @user.id, 
-                        :content => params['peep'])
-    @peeps = Peep.all
-    puts " I am the user id in the peep"
-    puts @user_id
-    puts "I am the session id"
-    puts session.inspect
-    puts "I am the peep"
-    puts @peep.inspect
-    puts @peeps.inspect
-    # @posts = Post.all(:order => [ :id.desc ], :limit => 20)
-    erb :posts
+  post '/peep/new' do
+  #   # @peeps = Peep.all
+     @peep = Peep.create(:content => params['peep'],
+                          :user_id => session[:user_id])
+      erb :posts
   end
 
   delete '/' do 
