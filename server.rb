@@ -1,9 +1,9 @@
 env = ENV["RACK_ENV"] || "development"
 
 
+require 'data_mapper'
 require 'sinatra'
 require 'rack-flash'
-require 'data_mapper'
 require 'sinatra/partial'
 require_relative 'data_mapper_setup'
 require_relative 'helpers/application'
@@ -50,9 +50,10 @@ set :partial_template_engine, :erb
   post '/session/new' do 
     email, password = params['email_si'], params['password_si']
     @user = User.authenticate(email, password)
-    # @post = Peep.create(:content => params['content'])
+    # puts @user.inspect
+    # puts @user.id.inspect
     if @user
-      session[:user_id] = @user_id
+      session[:user_id] = @user.id
       erb :chitter
     else
       flash[:errors] = ["The email or password is incorrect"]
@@ -61,10 +62,25 @@ set :partial_template_engine, :erb
   end
 
 
-  get '/session/new' do 
-      erb :chitter
+  get '/peep' do 
+      erb :new_peep
   end
 
+  post '/peep/new' do 
+    session[:user_id] = @user.id
+    @peep = Peep.create(:user_id => @user.id, 
+                        :content => params['peep'])
+    @peeps = Peep.all
+    puts " I am the user id in the peep"
+    puts @user_id
+    puts "I am the session id"
+    puts session.inspect
+    puts "I am the peep"
+    puts @peep.inspect
+    puts @peeps.inspect
+    # @posts = Post.all(:order => [ :id.desc ], :limit => 20)
+    erb :posts
+  end
 
   delete '/' do 
     session[:user_id] = @user_id
