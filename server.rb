@@ -61,16 +61,14 @@ set :partial_template_engine, :erb
 
 
   get '/peep' do 
-    # puts @peeps.inspect
-    # @peeps = Peep.all(:order => [ :id.desc ], :limit => 20)
     erb :posts
   end
 
   post '/peep/new' do
-  #   # @peeps = Peep.all
-     @peep = Peep.create(:content => params['peep'],
+    @peep = Peep.create(:content => params['peep'],
                           :user_id => session[:user_id])
-      erb :posts
+    @peeps = Peep.all(:order => [ :id.desc ], :limit => 20)
+    erb :posts
   end
 
   delete '/' do 

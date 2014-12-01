@@ -6,3 +6,9 @@
 <% if @peep %>
 	<%= @peep.content %>
 <% end %>
+
+<% if @peeps %>
+	<% @peeps.each do |peep| %>
+		<%= peep.content %>
+	<%end%>
+<%end%>
