@@ -59,7 +59,6 @@ set :partial_template_engine, :erb
     end
   end
 
-
   get '/peep' do 
     erb :posts
   end
@@ -71,26 +70,24 @@ set :partial_template_engine, :erb
     erb :posts
   end
 
-  delete '/' do 
-    session[:user_id] = @user_id
+  post '/' do 
     unless session[:user_id] == nil
+      @user_id = nil
       session[:user_id] = nil
       flash[:notice] = "You have signed out - Bye!"     
     end
     redirect to ('/')
   end
 
-  get '/forgot_password' do 
+  get '/user/forgot_password' do 
     erb :forgot_password
   end
 
   post '/forgot_password' do 
-    @email = params
-
-    # user.password_token = (1..64).map{('A'..'Z').to_a.sample}.join
-    # user.password_token_timestamp = Time.now
-    # user.save
-    
+    @scatterbrain_user = User.get(:email => params["email"])
+    @scatterbrain_user.password_token = (1..64).map{('A'..'Z').to_a.sample}.join
+    @scatterbrain_user.password_token_timestamp = Time.now
+    @scatterbrain_user.save
   end
 
 

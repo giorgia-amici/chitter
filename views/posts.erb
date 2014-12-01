@@ -3,22 +3,14 @@
       				<input type="submit" value="Peep">
 </form>
 
-<h3> Latest Peep </h3>
-<ol>
-	<% if @peep %>
-		<li>
-			<%= @peep.content %>
-			<%= @peep.created_at.strftime("%d/ %b/ %Y %H:%M:%S") %>
-		</li>
-	<% end %>
-	</ol>
-
 <ul>
 	<% if @peeps %>
 		<% @peeps.each do |peep| %>
 			<li>
 				<%= peep.content %>
+				<p>
 				<%= @peep.created_at.strftime("%d/ %b/ %Y %H:%M:%S") %>
+				</p>
 			</li>
 		<%end%>
 	<%end%>
