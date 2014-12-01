@@ -84,10 +84,17 @@ set :partial_template_engine, :erb
   end
 
   post '/forgot_password' do 
-    @scatterbrain_user = User.get(:email => params["email"])
+    @scatterbrain_user = User.first(:email => params["email"])
     @scatterbrain_user.password_token = (1..64).map{('A'..'Z').to_a.sample}.join
-    @scatterbrain_user.password_token_timestamp = Time.now
     @scatterbrain_user.save
+    "Please, check your inbox"
+  end
+
+  get '/reset_password/:token' do 
+    @scatterbrain_user = User.first[password_token: params[:token ]]
+    erb :new_password
+
+
   end
 
 
